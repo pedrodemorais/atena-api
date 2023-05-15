@@ -1,13 +1,31 @@
 package com.henritec.atena.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Livro {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity (name = "LIVROS")
+public class Livro implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String titulo;
 	private String nomeAutor;
 	private String descricao;
 
+	@ManyToOne
+	@JoinColumn(name="categoria_id")
 	private Categoria categoria;
 
 	public Livro() {
